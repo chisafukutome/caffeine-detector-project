@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/css/receipt.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>Receipt</title>
 </head>
 <body>
-    <h1>This is a receipt page. </h1>
+    <a href="index.html"><h1>Caffeine Calculator</h1></a>
+    <div class='receipt_Outer'>
+      <div class='receipt_Inner'>
+        <h2>Your Caffeine Receipt</h2>
+        <p class='right_Align'>Date here</p>
+        <p class = "left_Align">Your order: </p>
+        <hr>
+        <p style="margin-bottom:30px" class = "left_Align">(Caffeine content: mg)</p>
+        <p class = "left_Align">Ideal caffeine amount per day: 400mg</p>
+        <hr>
+        <p class='center_Align'>You can still take ___mg of caffeine!</p>
+        <a href="index.html"><img src="../static/icons/Coffee_Aqua.png" alt="Coffee Icon" class="icon"></a>
+      </div>
+    </div>
 </body>
 </html>
