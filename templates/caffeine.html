@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cookie&family=Roboto:wght@300&display=swap"
-      rel="stylesheet"
-    />
     <title>Caffeine Counter</title>
     <link rel="stylesheet" href="../static/css/caffeine.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -29,19 +23,18 @@
             <div class="column-left">
             <h1>Caffeine Calculator</h1>
             <br>
-            <p style="font-size: 36px; padding-bottom: 20px; margin-left: 8%;">Calculate the Caffeine Levels in any Beverage or Food</p>
+            <p>Calculate the Caffeine Levels in any Beverage or Food</p>
             <br>
             <div class="main__btn"><a href="scan.html"><ion-icon name="camera" class="camera-icon"></ion-icon>Scan Item</a></div>
         </div>
         <div class="column-right">
             <img src="../static/icons/Coffee_Pink.png" alt="pic" class ="hero-img">
         </div>
-        <form class="example" action="action_page.php">
-            <input type="text" placeholder="Search..." name="search" class="search-box" style="outline-style: none">
+        <form class="example" action="/receipt" method="post">
+            <input type="text" placeholder="Search.." name="search_by_text">
             <button type="submit"><i class="fa fa-search"></i></button>
           </form>
     </div>
-
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
 </html>

@@ -167,3 +167,8 @@ form.example::after {
   right: 10px;
   top: 2px;
 }
+
+.column-left p {
+    margin-left: 8%;
+    font-size: 36px;
+}
