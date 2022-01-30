@@ -164,8 +164,10 @@ form.example::after {
 .camera-icon {
   /* padding: 5px; */
   position: relative;
-  right: 10px;
-  top: 2px;
+  align-content: center;
+  justify-content: center;
+  /* right: 10px;
+  top: 2px; */
 }
 
 .column-left p {
