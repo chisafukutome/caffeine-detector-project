@@ -1,99 +1,86 @@
-*{margin:0; padding:0;}
-
-body
-{
-    background-color: #F5EEDC;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-h1
-{
-  padding-top:4%;
+body {
+  background-color: #f5eedc;
+}
+
+h1 {
+  padding-top: 4%;
   text-align: center;
 
-
-  font-family: 'Cookie', cursive;
-  font-size:64px;
+  font-family: "Cookie", cursive;
+  font-size: 64px;
   color: #483434;
 }
 
-h2
-{
-  text-align:center;
-  font-family: 'Roboto', sans-serif;
+h2 {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
   color: #483434;
-  margin-bottom:1.5%;
+  margin-bottom: 1.5%;
 }
 
-
-.receipt_Outer
-{
-  background-color: #FFFFFF;
+.receipt_Outer {
+  background-color: #ffffff;
   position: absolute;
-  top:60%;
-  transform: translate(-50%,-50%);
-  left:50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  left: 50%;
   width: 30%;
   height: 60%;
-
 }
 
-.receipt_Inner
-{
+.receipt_Inner {
   margin: 12%;
-  height: 100%
+  height: 100%;
 }
 
-.right_Align
-{
+.right_Align {
   text-align: right;
-  margin-right:18%;
-  margin-bottom:6%;
+  margin-right: 18%;
+  margin-bottom: 6%;
 }
 
-.center_Align
-{
-  text-align:center;
+.center_Align {
+  text-align: center;
 }
 
-.left_Align
-{
+.left_Align {
   margin-left: 10%;
 }
 
-p
-{
-  font-family: 'Roboto', sans-serif;
-  color:#483434;
+p {
+  font-family: "Roboto", sans-serif;
+  color: #483434;
 }
 
-hr
-{
-  margin-top:3%;
+hr {
+  margin-top: 3%;
   margin-bottom: 5%;
-  width:92%;
-  height:1px;
-  margin-left:auto;
-  margin-right:auto;
-  background-color:#483434;
-  border:none;
-}
-
-.icon
-{
-  display:block;
-  margin-top:9%;
+  width: 92%;
+  height: 1px;
   margin-left: auto;
   margin-right: auto;
-  width:23%;
+  background-color: #483434;
+  border: none;
 }
 
-a
-{
-  text-decoration:none;
+.icon {
+  display: block;
+  margin-top: 9%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 23%;
 }
 
-span
-{
-  display:inline-block;
-  width:100%;
+a {
+  text-decoration: none;
+}
+
+span {
+  display: inline-block;
+  width: 100%;
 }
