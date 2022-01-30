@@ -2,6 +2,8 @@ from getpass import getuser
 import json
 from flask import Flask, request, jsonify, render_template
 from flask_mongoengine import MongoEngine
+from matplotlib.container import BarContainer
+from barcode import *
 
 app = Flask(__name__)
 
@@ -20,15 +22,19 @@ class User(db.Document):
     #totalCaffeine = db.fields.intfield()
 
 
-@app.route('/', methods=['GET'])
-def query_records():
-    return render_template("receipt_testing.html")
+# @app.route('/', methods=['GET'])
+# def query_records():
+#     return render_template("index.html")
 
 @app.route('/', methods=['POST'])
 def post_record():
-    record = json.loads(request.data)
-    print(record)
-    return record
+    img_data = json.loads(request.data)
+    ScanAndSearchBarcode(img_data)
+    return "hi"
+
+@app.route('/', methods=['GET'])
+def scanImg():
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
