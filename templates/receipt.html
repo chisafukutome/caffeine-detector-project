@@ -13,13 +13,13 @@
     <div class='receipt_Outer'>
       <div class='receipt_Inner'>
         <h2 id="tagline" class="fulljustify">Your Caffeine Receipt</h2>
-        <p class='right_Align'>Date here</p>
-        <p class = "left_Align">Your order: </p>
+        <p class='right_Align'>{{ today }}</p>
+        <p class = "left_Align">Your order: {{ food.title() }} {{ serving_quantity }} {{ serving_unit }}</p>
         <hr>
-        <p style="margin-bottom:30px" class = "left_Align">(Caffeine content: mg)</p>
-        <p class = "left_Align">Ideal caffeine amount per day: 400mg</p>
+        <p style="margin-bottom:30px" class = "left_Align">(Caffeine content: {{ caffeine_amount }} mg)</p>
+        <p class = "left_Align">Ideal caffeine amount per day: 400 mg</p>
         <hr>
-        <p class='center_Align'>You can still take ___mg of caffeine!</p>
+        <p class='center_Align'>You can still take {{ amt_you_can_drink }} mg of caffeine!</p>
         <a href="index.html"><img src="../static/icons/Coffee_Aqua.png" alt="Coffee Icon" class="icon"></a>
       </div>
     </div>
