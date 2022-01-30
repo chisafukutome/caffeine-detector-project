@@ -10,7 +10,7 @@ def create_nutrition_obj(query):
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("caffeine.html")
 
 @app.route("/receipt")
 def receipt():
