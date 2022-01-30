@@ -1,3 +1,6 @@
+from asyncio.windows_events import NULL
+from urllib import response
+from flask import request
 import pandas
 import cv2
 from pyzbar.pyzbar import decode
@@ -7,6 +10,8 @@ from io import BytesIO
 from PIL import Image
 from binascii import a2b_base64
 import numpy
+import requests
+import json
 
 
 # Scan and decode barcode
@@ -58,12 +63,21 @@ def findProduct(upc):
     file = pandas.read_html("https://www.upcdatabase.com/item/" + str(upc))
     return(file[0][2][2])
 
+
 def ScanAndSearchBarcode(image_data):
     code = BarcodeReader(image_data)
     if (code):
         barcodeData = str(code)
         code = barcodeData[3:-1]
         productName = findProduct(code)
-        print("Product Name: ", productName)
+
+        if (productName):
+            print("Product Name: ", productName)
+            r = requests.post(url="http://localhost:5000/receipt", headers={'content-Type': 'application/json'}, json={'productName':productName})
+            print("status code: ", r.status_code)
+            print('text: ', r.text)
+            print("url: ", r.url)
+
     else:
         print("Barcode not detected or barcode is corrupted/blank")
+    

@@ -23,8 +23,8 @@ class Nutrition_Information():
         response.raise_for_status()
 
         data = response.json()['foods'][0]
-        food_name = data['food_name']
-        serving_qty = data['serving_qty']
+        food_title = data['food_name']
+        serving_quantity = data['serving_qty']
         serving_unit = data['serving_unit']
         nutrient_info = data['full_nutrients']
 
@@ -33,8 +33,8 @@ class Nutrition_Information():
                 # caffeine amount in mg
                 caffeine_amount = nutrient['value']
 
-        self.food = food_name
-        self.qty = serving_qty
+        self.food = food_title
+        self.qty = serving_quantity
         self.serving_unit = serving_unit
         self.caffeine_amt = caffeine_amount
 

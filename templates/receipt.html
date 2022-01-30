@@ -18,12 +18,11 @@
         <h2 id="tagline" class="fulljustify">Your Caffeine Receipt</h2>
         <p class="right_Align">{{ today }}</p>
         <p class="left_Align">
-          Your order: {{ food.title() }} {{ serving_quantity }} {{ serving_unit
-          }}
+          Your order: {{ food }} {{ qty }} {{ serving_unit }}
         </p>
         <hr />
         <p style="margin-bottom: 30px" class="left_Align">
-          (Caffeine content: {{ caffeine_amount }} mg)
+          (Caffeine content: {{ caffeine_amt }} mg)
         </p>
         <p class="left_Align">Ideal caffeine amount per day: 400 mg</p>
         <hr />
