@@ -30,21 +30,23 @@
             <br>
             <p>Calculate the Caffeine Levels in any Beverage or Food</p>
             <br>
-            <div class="main__btn"><a href="scan.html"><ion-icon name="camera" class="camera-icon"></ion-icon>Scan Item</a></div>
+            <!-- <div class="main__btn"><a href="scan.html"><ion-icon name="camera" class="camera-icon"></ion-icon>Scan Item</a></div> -->
+            <div id="snapshot-btn"><ion-icon name="camera" class="camera-icon"></ion-icon>Scan Barcode</div>
         </div>
         <div class="column-right">
             <!-- <img src="../static/icons/Coffee_Pink.png" alt="pic" class ="hero-img"> -->
             <video id="webcam" autoplay playsinline width="640" height="480"></video>
             <canvas id="canvas" class="d-none"></canvas>
             <!--<audio id="snapSound" src="audio/snap.wav" preload="auto"></audio> -->
-            <div id="snapshot-btn">Take Snapshot</div>
-            <script src="../static/js/scanCode.js"></script>
+            <!-- <div id="snapshot-btn">Take Snapshot</div> -->
+            
         </div>
-        <form class="example" action="/receipt" method="post">
-            <input type="text" placeholder="Search.." name="search_by_text">
+        <!-- <form class="example" action="/receipt" method="post">
+            <input type="text" placeholder="Search..." name="search_by_text">
             <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
+        </form> -->
     </div>
         <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <script src="../static/js/scanCode.js"></script>
 </body>
 </html>

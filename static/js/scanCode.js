@@ -25,7 +25,7 @@ snapshotBtn.addEventListener("click", (e) => {
   document.querySelector("#canvas").href = picture;
   console.log("Snapshot taken");
 
-  getPotentialBarcodeImg("/", picture)
+  getPotentialBarcodeImg("/scanCode", picture)
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
