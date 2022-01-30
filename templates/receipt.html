@@ -9,7 +9,7 @@
     <title>Receipt</title>
 </head>
 <body>
-    <a href="index.html"><h1>Caffeine Calculator</h1></a>
+    <a href="{{ url_for('home') }}"><h1>Caffeine Calculator</h1></a>
     <div class='receipt_Outer'>
       <div class='receipt_Inner'>
         <h2 id="tagline" class="fulljustify">Your Caffeine Receipt</h2>
@@ -20,7 +20,7 @@
         <p class = "left_Align">Ideal caffeine amount per day: 400 mg</p>
         <hr>
         <p class='center_Align'>You can still take {{ amt_you_can_drink }} mg of caffeine!</p>
-        <a href="index.html"><img src="../static/icons/Coffee_Aqua.png" alt="Coffee Icon" class="icon"></a>
+        <a href="{{ url_for('home') }}"><img src="../static/icons/Coffee_Aqua.png" alt="Coffee Icon" class="icon"></a>
       </div>
     </div>
 </body>
