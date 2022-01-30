@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    height: 80px;
+    background: #F5EEDC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem calc((100vw-1300px)/2);
+}
+
+.logo {
+    color: #483434;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 0 2rem;
+}
+
+nav a {
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: none;
+    color: #483434;
+    padding: 0 1.5rem;
+}
+
+.hero {
+    background: #F5EEDC;
+}
+
+.hero__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    padding: 3rem calc((100vw-1300px)/2);
+}
+
+.column-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: #483434;
+    padding: 0rem 2rem;
+}
+
+
+.column-left h1 {
+    font-size: 5rem;
+    font-family: cursive;
+    color: #483434;
+    position: relative;
+    margin-top: 20%;
+}
+
+.column-left p{
+    font-size: 3rem;
+    color: #483434;
+    position: relative;
+}
+
+.main__btn {
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    border: none;
+    color: #fff;
+    background: rgb(231, 169, 200);
+    cursor: pointer;
+    border-radius: 50px;
+}
+.main__btn a{
+    z-index: 2;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.column-right {
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    padding: 0rem 2rem;
+}
+
+
+
+.hero-img {
+    height: 50%;
+    width: 50%;
+    margin-top: 20%;
+
+}
+
+@media screen and (max-width: 768px) {
+    .hero--container {
+        grid-template-columns: 1fr;
+    }
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Style the search field */
+  form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    background: #f1f1f1;
+    margin-left: 4%;
+    width: 20%;
+    margin-bottom: 15%;
+  }
+
+  
+  /* Style the submit button */
+  form.example button {
+    float: left;
+    border-radius: 80px;
+    padding: 10px;
+    background: rgb(231, 169, 200);
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+    width: 10%;
+  }
+  
+  form.example button:hover {
+    background: rgb(231, 169, 200);
+  }
+  
+  /* Clear floats */
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+
