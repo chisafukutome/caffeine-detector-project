@@ -33,11 +33,6 @@ snapshotBtn.addEventListener("click", (e) => {
     .catch((error) => {
       console.error("Error:", error);
     });
-
-  // var download = document.createElement("a");
-  // download.href = picture;
-  // download.download = "potential_barcode";
-  // download.click();
 });
 
 async function getPotentialBarcodeImg(url = "", data = {}) {

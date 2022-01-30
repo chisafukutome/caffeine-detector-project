@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaffeineCulator | Home</title>
+    <!-- <link rel="stylesheet" href="../static/css/caffeine.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script
+    type="text/javascript"
+    src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"
+  ></script>
+  <link rel="stylesheet" href="../static/css/scanCode.css" />
+</head>
+
+<body>
+    <nav><div class="logo">CaffeineCulator</div>
+    <li class="nav-items">
+        <a href="#">Home</a>
+    </li>
+    <li class="nav-items">
+        <a href="https://www.healthline.com/nutrition/caffeine-side-effects#TOC_TITLE_HDR_3">Learn More</a>
+    </li>
+    </nav>
+    <div class="hero">
+        <div class="hero__container">
+            <div class="column-left">
+            <h1>CaffeineCulator</h1>
+            <br>
+            <p>Calculate the Caffeine Levels in any Beverage or Food</p>
+            <br>
+            <div class="main__btn"><a href="scan.html"><ion-icon name="camera" class="camera-icon"></ion-icon>Scan Item</a></div>
+        </div>
+        <div class="column-right">
+            <!-- <img src="../static/icons/Coffee_Pink.png" alt="pic" class ="hero-img"> -->
+            <video id="webcam" autoplay playsinline width="640" height="480"></video>
+            <canvas id="canvas" class="d-none"></canvas>
+            <!--<audio id="snapSound" src="audio/snap.wav" preload="auto"></audio> -->
+            <div id="snapshot-btn">Take Snapshot</div>
+            <script src="../static/js/camera.js"></script>
+        </div>
+        <form class="example" action="/receipt" method="post">
+            <input type="text" placeholder="Search.." name="search_by_text">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+    </div>
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+</html>

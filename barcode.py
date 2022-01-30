@@ -9,33 +9,15 @@ from binascii import a2b_base64
 import numpy
 
 
-#parse html for barcode img URI
-def ParseHTMLForBarcodeImg():
-    with open("index.html") as fp:
-        soup = BS(fp, 'html.parser')
-    print("SOUP: ", soup)
-  
 # Scan and decode barcode
 def BarcodeReader(image_data):
     binary_data = a2b_base64(image_data)
-    img1 = open('img.png', 'wb')
+    img1 = open('img_to_scan.png', 'wb')
     img1.write(binary_data)
     img1.close()
 
-    # im_byte_arr = bytes(image_data, encoding="ascii")
-    # img_plugin = Image.open(BytesIO(base64.b64decode(im_byte_arr))) 
-    # pil_image = img_plugin.convert('RGB') 
-    # img = numpy.array(pil_image)
-
-    img = cv2.imread('img.png') #becomes ndarray
-    # img = Image.fromarray(img) #becomes Images
+    img = cv2.imread('img_to_scan.png') #becomes ndarray
     img = cv2.flip(img, 1)
-
-    #Convert RGB to BGR
-    # img = img[:, :, ::-1].copy()
-    # print(type(img))
-    # cv2.imshow("Test", img)
-    # img = Image.fromarray(img)
 
     # Decode the barcode image
     detectedBarcodes = decode(img)
@@ -66,8 +48,8 @@ def BarcodeReader(image_data):
                  
     #Display the image
     # cv2.imshow("Image", img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
     return barcode.data
 
 
