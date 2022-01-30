@@ -21,9 +21,9 @@ h2
   text-align:center;
   font-family: 'Roboto', sans-serif;
   color: #483434;
-  margin-bottom:4px;
-
+  margin-bottom:1.5%;
 }
+
 
 .receipt_Outer
 {
@@ -34,21 +34,20 @@ h2
   left:50%;
   width: 30%;
   height: 60%;
-  border:2px;
 
 }
 
 .receipt_Inner
 {
-  margin: 40px;
+  margin: 12%;
   height: 100%
 }
 
 .right_Align
 {
   text-align: right;
-  margin-right:77px;
-  margin-bottom:20px;
+  margin-right:18%;
+  margin-bottom:6%;
 }
 
 .center_Align
@@ -58,18 +57,19 @@ h2
 
 .left_Align
 {
-  margin-left: 30px;
+  margin-left: 10%;
 }
 
 p
 {
+  font-family: 'Roboto', sans-serif;
   color:#483434;
 }
 
 hr
 {
-  margin-top:15px;
-  margin-bottom: 25px;
+  margin-top:3%;
+  margin-bottom: 5%;
   width:92%;
   height:1px;
   margin-left:auto;
@@ -81,14 +81,19 @@ hr
 .icon
 {
   display:block;
-  margin-top:35px;
+  margin-top:9%;
   margin-left: auto;
   margin-right: auto;
-  width:80px;
-  height:80px;
+  width:23%;
 }
 
 a
 {
   text-decoration:none;
+}
+
+span
+{
+  display:inline-block;
+  width:100%;
 }
