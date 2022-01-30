@@ -1,8 +1,6 @@
-from getpass import getuser
 import json
 from flask import Flask, request, jsonify, render_template
 from flask_mongoengine import MongoEngine
-from matplotlib.container import BarContainer
 from barcode import *
 from datetime import datetime
 from nutrients import Nutrition_Information

@@ -193,6 +193,12 @@ form.example::after {
   transition: transform 150ms;
 }
 
+#webcam {
+  visibility: visible;
+  border: 4px black solid;
+  border-radius: 15px;
+}
+
 #canvas {
   display: none;
 }
