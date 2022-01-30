@@ -1,0 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  background-color: #f5eedc;
+  font-family: "Roboto", sans-serif;
+  color: #483434;
+  border: solid 2px green;
+}
+
+body {
+  width: 60%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.wrapper {
+  position: relative;
+}
+
+h1 {
+  font-size: 64px;
+  font-family: "Cookie", cursive;
+  text-align: center;
+}
+
+h2 {
+  font-family: "Cookie", cursive;
+  text-align: center;
+  font-size: 48px;
+}
+
+.receipt {
+  margin: 50px;
+  background-color: white;
+  min-height: 500px;
+}
+
+.receipt-header {
+  /* border-color: red; */
+}

@@ -19,7 +19,12 @@ def receipt():
     formatted_caffeine = round(my_nutrition.caffeine_amt, 2)
     amt_you_can_drink = round(400 - my_nutrition.caffeine_amt, 2)
     return render_template("receipt.html", today=today, food=my_nutrition.food, serving_quantity=my_nutrition.qty,
-                           serving_unit=my_nutrition.serving_unit, caffeine_amount=formatted_caffeine, amt_you_can_drink=amt_you_can_drink)
+                           serving_unit=my_nutrition.serving_unit, caffeine_amount=formatted_caffeine,
+                           amt_you_can_drink=amt_you_can_drink)
+
+@app.route("/nutrition-data")
+def nutrition_data():
+    return render_template("nutrition-data.html")
 
 
 if __name__ == "__main__":
