@@ -1,17 +1,8 @@
 from asyncio.windows_events import NULL
-from urllib import response
-from flask import request
 import pandas
 import cv2
 from pyzbar.pyzbar import decode
-from bs4 import BeautifulSoup as BS
-import base64
-from io import BytesIO
-from PIL import Image
 from binascii import a2b_base64
-import numpy
-import requests
-import json
 
 
 # Scan and decode barcode
@@ -51,17 +42,18 @@ def BarcodeReader(image_data):
                 print(barcode.data)
                 print(barcode.type)
                  
-    #Display the image
-    # cv2.imshow("Image", img)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
     return barcode.data
 
 
 #find product in barcode API
 def findProduct(upc):
-    file = pandas.read_html("https://www.upcdatabase.com/item/" + str(upc))
-    return(file[0][2][2])
+    try:
+        file = pandas.read_html("https://www.upcdatabase.com/item/" + str(upc))
+        print("FIND PRODUCT FILE: ", file)
+        return(file[0][2][2])
+    except:
+        print("ERROR: COULD NOT FIND PRODUCT BY BARCODE ID")
+        return "Product not found"
 
 
 def ScanAndSearchBarcode(image_data):
@@ -70,14 +62,8 @@ def ScanAndSearchBarcode(image_data):
         barcodeData = str(code)
         code = barcodeData[3:-1]
         productName = findProduct(code)
-
-        if (productName):
-            print("Product Name: ", productName)
-            r = requests.post(url="http://localhost:5000/receipt", headers={'content-Type': 'application/json'}, json={'productName':productName})
-            print("status code: ", r.status_code)
-            print('text: ', r.text)
-            print("url: ", r.url)
+        return productName
 
     else:
         print("Barcode not detected or barcode is corrupted/blank")
-    
+        return "Barcode not found"

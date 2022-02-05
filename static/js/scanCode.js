@@ -1,14 +1,9 @@
 const webcamElement = document.getElementById("webcam");
 const canvasElement = document.getElementById("canvas");
-//const snapSoundElement = document.getElementById("snapSound");
 const snapshotBtn = document.getElementById("snapshot-btn");
+const scanFeedback = document.getElementById("scanFeedback");
 
-const webcam = new Webcam(
-  webcamElement,
-  "user",
-  canvasElement
-  //snapSoundElement
-);
+const webcam = new Webcam(webcamElement, "user", canvasElement);
 
 webcam
   .start()
@@ -21,29 +16,47 @@ webcam
 
 snapshotBtn.addEventListener("click", (e) => {
   let picture = webcam.snap();
-  console.log(picture);
-  document.querySelector("#canvas").href = picture;
-  console.log("Snapshot taken");
 
-  getPotentialBarcodeImg("/scanCode", picture)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Success:", data);
+  giveScanFeedback("Processing...");
+
+  postBarcodeImg("/scanCode", picture)
+    .then((res) => res.json())
+    .then((resData) => {
+      redirectToReceipt(resData);
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 });
 
-async function getPotentialBarcodeImg(url = "", data = {}) {
-  // Default options are marked with *
+async function postBarcodeImg(url = "", data = {}) {
   const response = await fetch(url, {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
-      // 'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: JSON.stringify(data.replace(`data:image/png;base64,`, "")), // body data type must match "Content-Type" header
+    body: JSON.stringify(data.replace(`data:image/png;base64,`, "")),
   });
-  return response.json(); // parses JSON response into native JavaScript objects
+  return response;
+}
+
+function redirectToReceipt(resData) {
+  console.log("RESPONSE: ", resData);
+
+  if (resData["status"] == "Barcode found, processing...") {
+    const productName = resData["productName"];
+    const urlWithProductName = "/receipt/<" + productName + ">";
+    window.location.href = urlWithProductName;
+  } else if (resData["status"] == "Barcode not found") {
+    giveScanFeedback("Barcode not found");
+  } else if (resData["status"] == "Product not found") {
+    giveScanFeedback("Product not found");
+  } else if (resData["status"] == "Failed to read barcode") {
+    giveScanFeedback("Failed to read barcode");
+  }
+}
+
+function giveScanFeedback(statusMsg) {
+  scanFeedback.style.visibility = "visible";
+  scanFeedback.innerText = statusMsg;
 }
