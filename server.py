@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, make_response
-from datetime import datetime
+from datetime import datetime, timedelta
 from nutrients import Nutrition_Information
 
 app = Flask(__name__)
@@ -27,7 +27,13 @@ def receipt():
                            serving_unit=my_nutrition.serving_unit, caffeine_amount=formatted_caffeine,
                            amt_you_can_drink=amt_you_can_drink))
 
-    resp.set_cookie('current_caffeine', value = str(400-amt_you_can_drink), max_age=60*60*24)
+
+    #Resets at midnight EST
+    time = datetime.now()
+    max_age = ((24-time.hour-6)*60*60) + ((60-time.minute-1)*60) + 60-time.second
+
+
+    resp.set_cookie('current_caffeine', value = str(400-amt_you_can_drink), max_age=max_age)
 
     return resp
 
