@@ -34,7 +34,7 @@ def get_nutrition_and_redirect(foodName):
     max_age = ((24-time.hour-6)*60*60) + ((60-time.minute-1)*60) + 60-time.second
 
 
-    resp.set_cookie('current_caffeine', value = str(400-amt_you_can_drink), max_age=max_age)
+    resp.set_cookie('current_caffeine', value = str(400-amt_you_can_drink), max_age=max_age, domain='127.0.0.1')
 
     return resp
 
@@ -43,6 +43,9 @@ def get_nutrition_and_redirect(foodName):
 #Home page
 @app.route("/")
 def home():
+    resp = make_response(render_template("caffeine.html"))
+    if not ('current_caffeine' in request.cookies):
+        resp.set_cookie('current_caffeine', value = '0', domain = '127.0.0.1')
     return render_template("caffeine.html")
 
 productNameGlobal = ""
@@ -107,4 +110,4 @@ def receiptFromSearchPost():
     return get_nutrition_and_redirect(query)
 
 if __name__ == "__main__":
-    app.run(debug=True, PORT=8000)
+    app.run(debug=True)
