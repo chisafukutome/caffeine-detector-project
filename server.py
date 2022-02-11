@@ -9,6 +9,16 @@ from nutrients import Nutrition_Information
 
 app = Flask(__name__)
 
+###########HELPER FUNCTION#############
+def get_nutrition_and_redirect(foodName):
+    today = datetime.now().strftime("%Y/%m/%d")
+    my_nutrition = create_nutrition_obj(foodName)
+    formatted_caffeine = round(my_nutrition.caffeine_amt, 2)
+    amt_you_can_drink = round(400 - my_nutrition.caffeine_amt, 2)
+    return render_template("receipt.html", today=today, food=my_nutrition.food, qty=my_nutrition.qty,
+                           serving_unit=my_nutrition.serving_unit, caffeine_amt=formatted_caffeine,
+                           amt_you_can_drink=amt_you_can_drink)
+
 ###############ROUTES##################
 
 #Home page
@@ -71,13 +81,7 @@ def getReceiptWithName(productName):
     foodName = foodName.replace("&gt;')}", "")
     print("FOOD NAME: ", foodName)
 
-    today = datetime.now().strftime("%Y/%m/%d")
-    my_nutrition = create_nutrition_obj(foodName)
-    formatted_caffeine = round(my_nutrition.caffeine_amt, 2)
-    amt_you_can_drink = round(400 - my_nutrition.caffeine_amt, 2)
-    return render_template("receipt.html", today=today, food=my_nutrition.food, qty=my_nutrition.qty,
-                           serving_unit=my_nutrition.serving_unit, caffeine_amt=formatted_caffeine,
-                           amt_you_can_drink=amt_you_can_drink)
+    return get_nutrition_and_redirect(foodName)
 
 @app.route("/receipt", methods=['post'])
 def receiptFromSearchPost():
@@ -85,13 +89,7 @@ def receiptFromSearchPost():
     print("TYPE: ", type(query))
     print("QUERY: ", query)
 
-    today = datetime.now().strftime("%Y/%m/%d")
-    my_nutrition = create_nutrition_obj(query)
-    formatted_caffeine = round(my_nutrition.caffeine_amt, 2)
-    amt_you_can_drink = round(400 - my_nutrition.caffeine_amt, 2)
-    return render_template("receipt.html", today=today, food=my_nutrition.food, qty=my_nutrition.qty,
-                           serving_unit=my_nutrition.serving_unit, caffeine_amt=formatted_caffeine,
-                           amt_you_can_drink=amt_you_can_drink)
+    return get_nutrition_and_redirect(query)
 
 if __name__ == "__main__":
     app.run(debug=True, PORT=8000)
