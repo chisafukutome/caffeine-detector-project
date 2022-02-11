@@ -12,35 +12,29 @@ headers = {
     "Content-Type": "application/json"
 }
 
-
 class Nutrition_Information():
     def __init__(self, query):
         nutrition_params = {
             "query": query
         }
-
+        
         response = requests.post(url=NUTRITIONIX_ENDPOINT, headers=headers, json=nutrition_params)
         response.raise_for_status()
 
+        print(str(response.json()))
         data = response.json()['foods'][0]
-        food_name = data['food_name']
-        serving_qty = data['serving_qty']
+        food_title = data['food_name']
+        serving_quantity = data['serving_qty']
         serving_unit = data['serving_unit']
         nutrient_info = data['full_nutrients']
 
+        caffeine_amount = 0
         for nutrient in nutrient_info:
             if nutrient['attr_id'] == 262:
                 # caffeine amount in mg
                 caffeine_amount = nutrient['value']
 
-        self.food = food_name
-        self.qty = serving_qty
+        self.food = food_title
+        self.qty = serving_quantity
         self.serving_unit = serving_unit
         self.caffeine_amt = caffeine_amount
-
-
-
-
-
-
-
