@@ -1,23 +1,42 @@
 from contextlib import redirect_stdout
 from dataclasses import replace
 import json
-from flask import Flask, request, jsonify, render_template, redirect
+from flask import Flask, request, jsonify, render_template, redirect, make_response
 from barcode import *
-from datetime import datetime
+from datetime import datetime, timedelta
 from markupsafe import escape
 from nutrients import Nutrition_Information
 
 app = Flask(__name__)
 
 ###########HELPER FUNCTION#############
+def create_nutrition_obj(query):
+    my_nutrition = Nutrition_Information(query)
+    return my_nutrition
+
 def get_nutrition_and_redirect(foodName):
     today = datetime.now().strftime("%Y/%m/%d")
+
+    previous_caffeine = 0
+    if 'current_caffeine' in request.cookies:
+        previous_caffeine = float(request.cookies.get('current_caffeine'))
     my_nutrition = create_nutrition_obj(foodName)
     formatted_caffeine = round(my_nutrition.caffeine_amt, 2)
-    amt_you_can_drink = round(400 - my_nutrition.caffeine_amt, 2)
-    return render_template("receipt.html", today=today, food=my_nutrition.food, qty=my_nutrition.qty,
-                           serving_unit=my_nutrition.serving_unit, caffeine_amt=formatted_caffeine,
-                           amt_you_can_drink=amt_you_can_drink)
+    amt_you_can_drink = round(400 - my_nutrition.caffeine_amt - previous_caffeine, 2)
+
+    resp = make_response(render_template("receipt.html", today=today, food=my_nutrition.food, serving_quantity=my_nutrition.qty,
+                           serving_unit=my_nutrition.serving_unit, caffeine_amount=formatted_caffeine,
+                           amt_you_can_drink=amt_you_can_drink))
+
+
+    #Resets at midnight EST
+    time = datetime.now()
+    max_age = ((24-time.hour-6)*60*60) + ((60-time.minute-1)*60) + 60-time.second
+
+
+    resp.set_cookie('current_caffeine', value = str(400-amt_you_can_drink), max_age=max_age)
+
+    return resp
 
 ###############ROUTES##################
 
@@ -64,10 +83,6 @@ def scanImg():
     return render_template("scanCode.html")
 
 #Receipt page
-def create_nutrition_obj(query):
-    my_nutrition = Nutrition_Information(query)
-    return my_nutrition
-
 @app.route('/receipt', methods=['GET'])
 def getReceipt():
     return render_template("receipt.html")
