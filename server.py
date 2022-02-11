@@ -23,6 +23,8 @@ def get_nutrition_and_redirect(foodName):
     my_nutrition = create_nutrition_obj(foodName)
     formatted_caffeine = round(my_nutrition.caffeine_amt, 2)
     amt_you_can_drink = round(400 - my_nutrition.caffeine_amt - previous_caffeine, 2)
+    if (amt_you_can_drink < 0):
+        amt_you_can_drink = 0
 
     resp = make_response(render_template("receipt.html", today=today, food=my_nutrition.food, serving_quantity=my_nutrition.qty,
                            serving_unit=my_nutrition.serving_unit, caffeine_amount=formatted_caffeine,
