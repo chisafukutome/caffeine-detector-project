@@ -3,6 +3,8 @@ import pandas
 import cv2
 from pyzbar.pyzbar import decode
 from binascii import a2b_base64
+import requests
+import json
 
 
 # Scan and decode barcode
@@ -47,6 +49,7 @@ def BarcodeReader(image_data):
 
 #find product in barcode API
 def findProduct(upc):
+    '''
     try:
         file = pandas.read_html("https://www.upcdatabase.com/item/" + str(upc))
         print("FIND PRODUCT FILE: ", file)
@@ -54,6 +57,15 @@ def findProduct(upc):
     except:
         print("ERROR: COULD NOT FIND PRODUCT BY BARCODE ID")
         return "Product not found"
+    '''
+   # try:
+        file = requests.get("https://api.upcdatabase.org/product/" + upc + "?apikey=" + UPC_KEY)
+        jsonData = json.loads(file)
+        return(jsonData['title'])
+   # except:
+        print("ERROR: COULD NOT FIND PRODUCT BY BARCODE ID")
+        return "Product not found"
+        
 
 
 def ScanAndSearchBarcode(image_data):
