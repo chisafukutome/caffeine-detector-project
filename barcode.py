@@ -58,11 +58,11 @@ def findProduct(upc):
         print("ERROR: COULD NOT FIND PRODUCT BY BARCODE ID")
         return "Product not found"
     '''
-   # try:
+   try:
         file = requests.get("https://api.upcdatabase.org/product/" + upc + "?apikey=" + UPC_KEY)
         jsonData = json.loads(file)
         return(jsonData['title'])
-   # except:
+   except:
         print("ERROR: COULD NOT FIND PRODUCT BY BARCODE ID")
         return "Product not found"
         
