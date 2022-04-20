@@ -1,10 +1,11 @@
-from asyncio.windows_events import NULL
-import pandas
 import cv2
 from pyzbar.pyzbar import decode
 from binascii import a2b_base64
 import requests
 import json
+import os
+
+UPC_KEY = os.environ.get('UPC_KEY')
 
 
 # Scan and decode barcode
@@ -19,60 +20,55 @@ def BarcodeReader(image_data):
 
     # Decode the barcode image
     detectedBarcodes = decode(img)
-      
+
     # If not detected then print the message
     if not detectedBarcodes:
         # print("Barcode Not Detected or your barcode is blank/corrupted!")
         return False
     else:
-       
+
           # Traverse through all the detected barcodes in image
-        for barcode in detectedBarcodes: 
-           
+        for barcode in detectedBarcodes:
+
             # Locate the barcode position in image
             (x, y, w, h) = barcode.rect
-             
+
             # Put the rectangle in image using
             # cv2 to heighlight the barcode
             cv2.rectangle(img, (x-10, y-10),
                           (x + w+10, y + h+10),
                           (255, 0, 0), 2)
-             
+
             if barcode.data!="":
-               
+
             # Print the barcode data
-                print(barcode.data)
-                print(barcode.type)
-                 
+                print("Barcode data: ", barcode.data)
+                print("Barcode type: ", barcode.type)
+
     return barcode.data
 
 
 #find product in barcode API
 def findProduct(upc):
-    '''
+    print("Querying product API with barcode")
     try:
-        file = pandas.read_html("https://www.upcdatabase.com/item/" + str(upc))
-        print("FIND PRODUCT FILE: ", file)
-        return(file[0][2][2])
-    except:
-        print("ERROR: COULD NOT FIND PRODUCT BY BARCODE ID")
-        return "Product not found"
-    '''
-   try:
         file = requests.get("https://api.upcdatabase.org/product/" + upc + "?apikey=" + UPC_KEY)
-        jsonData = json.loads(file)
-        return(jsonData['title'])
-   except:
-        print("ERROR: COULD NOT FIND PRODUCT BY BARCODE ID")
+    except:
+        print("ERROR: FAILED TO FIND PRODUCT BY BARCODE ID")
         return "Product not found"
-        
 
+    jsonData = file.json()
+    print("Returned JSON data: ", jsonData)
+    foodName = jsonData['description'] if jsonData['title'] == '' else jsonData['title']
+    return foodName
 
+#get product info from scan
 def ScanAndSearchBarcode(image_data):
-    code = BarcodeReader(image_data)
-    if (code):
-        barcodeData = str(code)
-        code = barcodeData[3:-1]
+    barcodeData = BarcodeReader(image_data)
+    if (barcodeData):
+        barcodeData = str(barcodeData)
+        code = barcodeData[2:-1]
+        print("Barcode: ", code)
         productName = findProduct(code)
         return productName
 
